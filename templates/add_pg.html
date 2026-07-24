@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add PG</title>
+</head>
+<body>
+
+<h2>Add PG</h2>
+
+<form action="/add_pg" method="POST" enctype="multipart/form-data">
+
+    <input type="text" name="pg_name" placeholder="PG Name" required><br><br>
+
+    <input type="text" name="location" placeholder="Location" required><br><br>
+
+    <input type="number" name="rent" placeholder="Rent" required><br><br>
+
+    <select name="gender">
+        <option>Boys</option>
+        <option>Girls</option>
+        <option>Co-Living</option>
+    </select>
+
+    <br><br>
+
+    <textarea name="description" placeholder="Description"></textarea>
+
+    <br><br>
+
+    <label>Upload PG Image</label><br>
+
+<input type="file" name="image" required>
+
+<br><br>
+
+</form>
+
+</body>
+</html>

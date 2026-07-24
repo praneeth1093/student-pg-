@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available PGs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+<h2 class="text-center">Find Your PG</h2>
+
+<form method="GET" action="/pgs" class="mb-4">
+
+    <div class="row">
+
+        <div class="col-md-10">
+            <input type="text"
+                   name="location"
+                   class="form-control"
+                   placeholder="Search by Location">
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">
+                Search
+            </button>
+        </div>
+
+    </div>
+
+</form>
+
+<div class="row">
+
+{% for pg in pgs %}
+
+<div class="col-md-4">
+
+<div class="card shadow mb-4">
+
+<div class="card-body">
+
+<h4>{{ pg[2] }}</h4>
+
+<p><strong>Location:</strong> {{ pg[3] }}</p>
+
+<p><strong>Rent:</strong> ₹{{ pg[4] }}</p>
+
+<p><strong>Gender:</strong> {{ pg[5] }}</p>
+
+<p>{{ pg[6] }}</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>
