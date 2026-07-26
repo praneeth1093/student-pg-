@@ -1,48 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PG Details</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
+<h1>{{ pg[2] }}</h1>
 
-    <div class="card shadow">
+{% if pg[7] %}
+<img src="/uploads/{{ pg[7] }}" width="500" height="300">
+{% endif %}
 
-        <div class="card-body">
-            <img src="/uploads/{{ pg[7] }}"
-                 class="img-fluid rounded mb-3"
-                 alt="PG Image">
+<hr>
 
-            <h2>{{ pg[2] }}</h2>
+<h3>📍 Location</h3>
+<p>{{ pg[3] }}</p>
 
-            <hr>
+<h3>💰 Rent</h3>
+<p>₹{{ pg[4] }} / Month</p>
 
-            <h5>📍 Location</h5>
-            <p>{{ pg[3] }}</p>
+<h3>👥 Gender</h3>
+<p>{{ pg[5] }}</p>
 
-            <h5>💰 Rent</h5>
-            <p>₹{{ pg[4] }}/month</p>
+<h3>🛏 Total Rooms</h3>
+<p>{{ pg[8] }}</p>
 
-            <h5>👥 Gender</h5>
-            <p>{{ pg[5] }}</p>
+<h3>✅ Available Rooms</h3>
+<p>{{ pg[9] }}</p>
 
-            <h5>📝 Description</h5>
-            <p>{{ pg[6] }}</p>
+<h3>📝 Description</h3>
+<p>{{ pg[6] }}</p>
 
-            <a href="/pgs" class="btn btn-secondary">
-                Back to PG List
-            </a>
+<hr>
 
-        </div>
+{% if pg[9] > 0 %}
+    <a href="/book/{{ pg[0] }}">
+        <button>Book Now</button>
+    </a>
+{% else %}
+    <h2 style="color:red;">❌ Fully Occupied</h2>
+{% endif %}
 
-    </div>
+<br><br>
 
-</div>
+<a href="/pgs">⬅ Back to PG List</a>
 
 </body>
 </html>

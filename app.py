@@ -114,6 +114,8 @@ def add_pg():
         pg_name = request.form["pg_name"]
         location = request.form["location"]
         rent = request.form["rent"]
+        total_rooms = request.form["total_rooms"]
+        available_rooms = total_rooms
         gender = request.form["gender"]
         description = request.form["description"]
 
@@ -283,27 +285,88 @@ def delete_pg(pg_id):
     cur.close()
 
     return redirect("/owner_dashboard") 
-
 @app.route("/pgs")
 def pg_list():
 
     location = request.args.get("location")
+    gender = request.args.get("gender")
+    rent = request.args.get("rent")
 
     cur = mysql.connection.cursor()
 
+    query = "SELECT * FROM pg_details WHERE 1=1"
+    values = []
+
     if location:
-        cur.execute(
-            "SELECT * FROM pg_details WHERE location LIKE %s",
-            ("%" + location + "%",)
-        )
-    else:
-        cur.execute("SELECT * FROM pg_details")
+        query += " AND location LIKE %s"
+        values.append("%" + location + "%")
+
+    if gender:
+        query += " AND gender=%s"
+        values.append(gender)
+
+    if rent:
+        query += " AND rent<=%s"
+        values.append(rent)
+
+    cur.execute(query, tuple(values))
 
     pgs = cur.fetchall()
 
     cur.close()
 
     return render_template("pg_list.html", pgs=pgs)
+
+@app.route("/edit_pg/<int:pg_id>", methods=["GET", "POST"])
+def edit_pg(pg_id):
+
+    if "owner" not in session:
+        return redirect("/owner_login")
+
+    cur = mysql.connection.cursor()
+
+    if request.method == "POST":
+
+        pg_name = request.form["pg_name"]
+        location = request.form["location"]
+        rent = request.form["rent"]
+        gender = request.form["gender"]
+        description = request.form["description"]
+
+        cur.execute("""
+            UPDATE pg_details
+            SET
+                pg_name=%s,
+                location=%s,
+                rent=%s,
+                gender=%s,
+                description=%s
+            WHERE id=%s AND owner_id=%s
+        """, (
+            pg_name,
+            location,
+            rent,
+            gender,
+            description,
+            pg_id,
+            session["owner"]
+        ))
+
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect("/owner_dashboard")
+
+    cur.execute(
+        "SELECT * FROM pg_details WHERE id=%s AND owner_id=%s",
+        (pg_id, session["owner"])
+    )
+
+    pg = cur.fetchone()
+
+    cur.close()
+
+    return render_template("edit_pg.html", pg=pg)
 
 if __name__ == "__main__":
     app.run(debug=True)
