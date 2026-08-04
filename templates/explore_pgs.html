@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore PGs | HomelyHub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/explore_pgs.css') }}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🏠 HomelyHub
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="/">Home</a></li>
+
+        <li><a href="/pgs" class="active">Explore PGs</a></li>
+
+        <li><a href="/owner/login">Owner</a></li>
+
+        <li><a href="/login">Student</a></li>
+
+    </ul>
+
+    <a href="/register" class="btn-register">
+        Register
+    </a>
+
+</nav>
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-header">
+
+    <h1>Explore PG Accommodations</h1>
+
+    <p>
+        Discover verified PGs with premium facilities.
+    </p>
+
+</section>
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search-section">
+
+    <form class="search-box">
+
+        <input type="text" placeholder="📍 Search by Location">
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+</section>
+
+<!-- ================= FILTERS ================= -->
+
+<section class="filters">
+
+    <button>All</button>
+
+    <button>Boys</button>
+
+    <button>Girls</button>
+
+    <button>Co-Living</button>
+
+    <button>AC</button>
+
+    <button>Food</button>
+
+    <button>WiFi</button>
+
+    <button>Laundry</button>
+
+</section>
+
+<!-- ================= PG LIST ================= -->
+
+<section class="pg-container">
+
+<!-- CARD 1 -->
+
+<div class="pg-card">
+
+    <img src="{{ url_for('static', filename='images/pg1.jpg') }}">
+
+    <div class="pg-details">
+
+        <div class="top-row">
+
+            <h2>Elite Boys PG</h2>
+
+            <span class="rating">⭐ 4.8</span>
+
+        </div>
+
+        <p class="location">
+            📍 Sholinganallur, Chennai
+        </p>
+
+        <div class="facilities">
+
+            <span>🛏 Fully Furnished</span>
+
+            <span>📶 WiFi</span>
+
+            <span>❄ AC</span>
+
+            <span>🍛 Food</span>
+
+            <span>🧺 Laundry</span>
+
+        </div>
+
+        <div class="bottom-row">
+
+            <h3>₹8,500 / Month</h3>
+
+            <a href="#" class="view-btn">
+                View Details
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CARD 2 -->
+
+<div class="pg-card">
+
+    <img src="{{ url_for('static', filename='images/pg2.jpg') }}">
+
+    <div class="pg-details">
+
+        <div class="top-row">
+
+            <h2>Premium Girls PG</h2>
+
+            <span class="rating">⭐ 4.9</span>
+
+        </div>
+
+        <p class="location">
+            📍 Navalur, Chennai
+        </p>
+
+        <div class="facilities">
+
+            <span>🛏 Furnished</span>
+
+            <span>📶 WiFi</span>
+
+            <span>❄ AC</span>
+
+            <span>🍛 Food</span>
+
+            <span>🧹 Housekeeping</span>
+
+        </div>
+
+        <div class="bottom-row">
+
+            <h3>₹9,000 / Month</h3>
+
+            <a href="#" class="view-btn">
+                View Details
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CARD 3 -->
+
+<div class="pg-card">
+
+    <img src="{{ url_for('static', filename='images/pg3.jpg') }}">
+
+    <div class="pg-details">
+
+        <div class="top-row">
+
+            <h2>Luxury Co-Living</h2>
+
+            <span class="rating">⭐ 5.0</span>
+
+        </div>
+
+        <p class="location">
+            📍 Perungudi, Chennai
+        </p>
+
+        <div class="facilities">
+
+            <span>🏋 Gym</span>
+
+            <span>📶 WiFi</span>
+
+            <span>🍛 Food</span>
+
+            <span>🚗 Parking</span>
+
+            <span>🧺 Laundry</span>
+
+        </div>
+
+        <div class="bottom-row">
+
+            <h3>₹10,500 / Month</h3>
+
+            <a href="#" class="view-btn">
+                View Details
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CARD 4 -->
+
+<div class="pg-card">
+
+    <img src="{{ url_for('static', filename='images/pg1.jpg') }}">
+
+    <div class="pg-details">
+
+        <div class="top-row">
+
+            <h2>Comfort Stay PG</h2>
+
+            <span class="rating">⭐ 4.7</span>
+
+        </div>
+
+        <p class="location">
+            📍 Siruseri
+        </p>
+
+        <div class="facilities">
+
+            <span>❄ AC</span>
+
+            <span>🍛 Food</span>
+
+            <span>📶 WiFi</span>
+
+            <span>🧹 Cleaning</span>
+
+            <span>🔐 Security</span>
+
+        </div>
+
+        <div class="bottom-row">
+
+            <h3>₹7,500 / Month</h3>
+
+            <a href="#" class="view-btn">
+                View Details
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h2>🏠 HomelyHub</h2>
+
+    <p>
+        Helping students find safe and affordable PG accommodation.
+    </p>
+
+    <p>
+        © 2026 HomelyHub. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+
+</html>

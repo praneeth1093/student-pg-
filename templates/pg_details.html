@@ -1,49 +1,245 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>PG Details</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PG Details | HomelyHub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pg_details.css') }}">
+
 </head>
+
 <body>
 
-<h1>{{ pg[2] }}</h1>
+<!-- ================= NAVBAR ================= -->
 
-{% if pg[7] %}
-<img src="/uploads/{{ pg[7] }}" width="500" height="300">
-{% endif %}
+<nav class="navbar">
 
-<hr>
+    <div class="logo">
+        🏠 HomelyHub
+    </div>
 
-<h3>📍 Location</h3>
-<p>{{ pg[3] }}</p>
+    <ul class="nav-links">
 
-<h3>💰 Rent</h3>
-<p>₹{{ pg[4] }} / Month</p>
+        <li><a href="/">Home</a></li>
 
-<h3>👥 Gender</h3>
-<p>{{ pg[5] }}</p>
+        <li><a href="/pgs">Explore PGs</a></li>
 
-<h3>🛏 Total Rooms</h3>
-<p>{{ pg[8] }}</p>
+        <li><a href="/owner/login">Owner</a></li>
 
-<h3>✅ Available Rooms</h3>
-<p>{{ pg[9] }}</p>
+        <li><a href="/login">Student</a></li>
 
-<h3>📝 Description</h3>
-<p>{{ pg[6] }}</p>
+    </ul>
 
-<hr>
-
-{% if pg[9] > 0 %}
-    <a href="/book/{{ pg[0] }}">
-        <button>Book Now</button>
+    <a href="/register" class="btn-register">
+        Register
     </a>
-{% else %}
-    <h2 style="color:red;">❌ Fully Occupied</h2>
-{% endif %}
 
-<br><br>
+</nav>
 
-<a href="/pgs">⬅ Back to PG List</a>
+<!-- ================= HEADER ================= -->
+
+<section class="pg-header">
+
+    <h1>Elite Boys PG</h1>
+
+    <p>⭐⭐⭐⭐⭐ 4.8 • 📍 Sholinganallur, Chennai</p>
+
+</section>
+
+<!-- ================= IMAGE GALLERY ================= -->
+
+<section class="gallery">
+
+    <div class="main-image">
+
+        <img src="{{ url_for('static', filename='images/pg1.jpg') }}">
+
+    </div>
+
+    <div class="small-images">
+
+        <img src="{{ url_for('static', filename='images/pg2.jpg') }}">
+
+        <img src="{{ url_for('static', filename='images/pg3.jpg') }}">
+
+        <img src="{{ url_for('static', filename='images/pg1.jpg') }}">
+
+        <img src="{{ url_for('static', filename='images/pg2.jpg') }}">
+
+    </div>
+
+</section>
+
+<!-- ================= DETAILS ================= -->
+
+<section class="details">
+
+<div class="left">
+
+<h2>Description</h2>
+
+<p>
+
+Elite Boys PG provides fully furnished rooms with WiFi,
+AC, delicious food, housekeeping, laundry service,
+24×7 security and power backup.
+
+Located just 5 minutes from IT companies and colleges.
+
+</p>
+
+<h2>Amenities</h2>
+
+<div class="amenities">
+
+<span>🛏 Furnished Room</span>
+
+<span>📶 High Speed WiFi</span>
+
+<span>❄ AC Room</span>
+
+<span>🍛 Food Included</span>
+
+<span>🧺 Laundry</span>
+
+<span>🚗 Parking</span>
+
+<span>📹 CCTV</span>
+
+<span>⚡ Power Backup</span>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="price-card">
+
+<h2>₹8,500 / Month</h2>
+
+<p>Security Deposit : ₹5,000</p>
+
+<p>Room Type : Double Sharing</p>
+
+<p>Availability : Available</p>
+
+<button class="book-btn">
+
+Book Now
+
+</button>
+
+<button class="wish-btn">
+
+❤️ Add to Wishlist
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= OWNER ================= -->
+
+<section class="owner">
+
+<h2>Owner Information</h2>
+
+<div class="owner-card">
+
+<img src="{{ url_for('static', filename='images/owner.jpg') }}">
+
+<div>
+
+<h3>KSN PG</h3>
+
+<p>📞 +91 9876543210</p>
+
+<p>✉ owner@homelyhub.com</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= MAP ================= -->
+
+<section class="map">
+
+<h2>Location</h2>
+
+<div class="map-box">
+
+Google Map will be integrated here
+
+</div>
+
+</section>
+
+<!-- ================= REVIEWS ================= -->
+
+<section class="reviews">
+
+<h2>Student Reviews</h2>
+
+<div class="review">
+
+⭐⭐⭐⭐⭐
+
+<p>
+
+Excellent rooms and food.
+Highly recommended.
+
+</p>
+
+<h4>- Rahul</h4>
+
+</div>
+
+<div class="review">
+
+⭐⭐⭐⭐⭐
+
+<p>
+
+Very clean and safe.
+
+</p>
+
+<h4>- Priya</h4>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>🏠 HomelyHub</h2>
+
+<p>
+
+Helping students find better PGs.
+
+</p>
+
+</footer>
 
 </body>
+
 </html>

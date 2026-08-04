@@ -2,8 +2,11 @@ from flask import Flask, render_template, request, session, redirect, send_from_
 from flask_mysqldb import MySQL
 from werkzeug.utils import secure_filename
 import os
+import boto3
+from dotenv import load_dotenv
 
 app = Flask(__name__)
+load_dotenv()
 app.secret_key = "studentpg123"
 
 UPLOAD_FOLDER = "uploads"
@@ -15,10 +18,20 @@ app.config['MYSQL_PASSWORD'] = 'Praneeth@1093'
 app.config['MYSQL_DB'] = 'student_pg'
 
 mysql = MySQL(app)
+AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_REGION = os.getenv("AWS_REGION")
+AWS_BUCKET = os.getenv("AWS_BUCKET_NAME")
 
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id=AWS_ACCESS_KEY,
+    aws_secret_access_key=AWS_SECRET_KEY,
+    region_name=AWS_REGION
+)
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("home.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -90,21 +103,35 @@ def dashboard():
         return redirect("/login")
 
     return render_template("dashboard.html")
-
-
-
-@app.route("/pg/<int:pg_id>")
-def pg_details(pg_id):
+@app.route("/pg/<int:id>")
+def pg_details(id):
 
     cur = mysql.connection.cursor()
 
-    cur.execute("SELECT * FROM pg_details WHERE id=%s", (pg_id,))
-
+    cur.execute("""
+        SELECT *
+        FROM pg_details
+        WHERE id=%s
+    """, (id,))
     pg = cur.fetchone()
+
+    cur.execute("""
+        SELECT image_url
+        FROM pg_images
+        WHERE pg_id=%s
+    """, (id,))
+    images = cur.fetchall()
+
+    print("PG ID:", id)
+    print("Images:", images)
 
     cur.close()
 
-    return render_template("pg_details.html", pg=pg)
+    return render_template(
+        "pg_details.html",
+        pg=pg,
+        images=images
+    )
 
 @app.route("/add_pg", methods=["GET", "POST"])
 def add_pg():
@@ -119,26 +146,71 @@ def add_pg():
         gender = request.form["gender"]
         description = request.form["description"]
 
-        # Get uploaded image
-        image = request.files["image"]
+        # Get all uploaded images
+        images = request.files.getlist("images")
 
-        # Create a safe filename
-        filename = secure_filename(image.filename)
+        print("===================================")
+        print("Number of images selected:", len(images))
+        for img in images:
+            print("Selected Image:", img.filename)
+        print("===================================")
 
-        # Save image in uploads folder
-        image.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-
-        # Save data to database
         cur = mysql.connection.cursor()
 
+        # Insert PG details
         cur.execute("""
             INSERT INTO pg_details
-            (owner_id, pg_name, location, rent, gender, description, image)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """, (1, pg_name, location, rent, gender, description, filename))
+            (owner_id, pg_name, location, rent, gender, description, total_rooms, available_rooms)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
+        """, (
+            1,
+            pg_name,
+            location,
+            rent,
+            gender,
+            description,
+            total_rooms,
+            available_rooms
+        ))
+
+        mysql.connection.commit()
+
+        # Get the newly inserted PG ID
+        pg_id = cur.lastrowid
+
+        # Upload every image to S3
+        for image in images:
+
+            if image.filename == "":
+                print("Skipped empty image")
+                continue
+
+            filename = secure_filename(image.filename)
+
+            print("Uploading:", filename)
+
+            s3.upload_fileobj(
+                image,
+                AWS_BUCKET,
+                filename,
+                ExtraArgs={"ContentType": image.content_type}
+            )
+
+            image_url = f"https://{AWS_BUCKET}.s3.{AWS_REGION}.amazonaws.com/{filename}"
+
+            print("Image URL:", image_url)
+
+            cur.execute("""
+                INSERT INTO pg_images (pg_id, image_url)
+                VALUES (%s, %s)
+            """, (pg_id, image_url))
+
+            print("Inserted into pg_images table")
 
         mysql.connection.commit()
         cur.close()
+
+        print("All images uploaded successfully!")
 
         return "PG Added Successfully!"
 
@@ -288,13 +360,25 @@ def delete_pg(pg_id):
 @app.route("/pgs")
 def pg_list():
 
-    location = request.args.get("location")
-    gender = request.args.get("gender")
-    rent = request.args.get("rent")
+    location = request.args.get("location", "")
+    gender = request.args.get("gender", "")
+    rent = request.args.get("rent", "")
 
     cur = mysql.connection.cursor()
 
-    query = "SELECT * FROM pg_details WHERE 1=1"
+    query = """
+    SELECT
+        pg_details.*,
+        (
+            SELECT image_url
+            FROM pg_images
+            WHERE pg_images.pg_id = pg_details.id
+            LIMIT 1
+        ) AS image_url
+    FROM pg_details
+    WHERE 1=1
+    """
+
     values = []
 
     if location:
@@ -312,6 +396,10 @@ def pg_list():
     cur.execute(query, tuple(values))
 
     pgs = cur.fetchall()
+
+    print("========== PG LIST ==========")
+    for pg in pgs:
+        print(pg)
 
     cur.close()
 
@@ -367,6 +455,9 @@ def edit_pg(pg_id):
     cur.close()
 
     return render_template("edit_pg.html", pg=pg)
+@app.route("/pgs")
+def explore_pgs():
+    return render_template("explore_pgs.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

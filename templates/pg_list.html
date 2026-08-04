@@ -1,4 +1,11 @@
-<h2>Search PG</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available PGs</title>
+</head>
+<body>
+
+<h1>Available PGs</h1>
 
 <form method="GET" action="/pgs">
 
@@ -10,17 +17,53 @@
         <option value="">All</option>
         <option value="Boys">Boys</option>
         <option value="Girls">Girls</option>
-        <option value="Both">Both</option>
+        <option value="Boys & Girls">Boys & Girls</option>
     </select>
 
     <input type="number"
            name="rent"
-           placeholder="Max Rent">
+           placeholder="Maximum Rent">
 
-    <button type="submit">
-        Search
-    </button>
+    <button type="submit">Search</button>
 
 </form>
 
 <hr>
+
+{% if pgs %}
+
+    {% for pg in pgs %}
+
+    <div style="border:1px solid black; padding:15px; margin-bottom:20px; width:350px;">
+
+        {% if pg[9] %}
+            <img src="{{ pg[10] }}" width="300" height="200">
+            <br><br>
+        {% endif %}
+
+        <h2>{{ pg[2] }}</h2>
+
+        <p><b>Location:</b> {{ pg[3] }}</p>
+
+        <p><b>Rent:</b> ₹{{ pg[4] }}</p>
+
+        <p><b>Gender:</b> {{ pg[5] }}</p>
+
+        <p><b>Available Rooms:</b> {{ pg[8] }}</p>
+
+        <a href="/pg/{{ pg[0] }}">
+            <button>View Details</button>
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <h2>No PGs Found</h2>
+
+{% endif %}
+
+</body>
+</html>

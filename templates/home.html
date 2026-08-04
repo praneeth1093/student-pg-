@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HomelyHub</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🏠 HomelyHub
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="/">Home</a></li>
+
+           <li><a href="/pgs">Explore PGs</a></li>
+
+            <li><a href="/owner/login">Owner</a></li>
+
+            <li><a href="/login">Student</a></li>
+
+        </ul>
+
+        <a href="/register" class="btn-register">
+            Register
+        </a>
+
+    </nav>
+    <section class="hero">
+
+    <div class="hero-left">
+
+        <h1>Find Your Perfect PG</h1>
+
+        <p>
+            Discover verified, safe and affordable PG accommodations
+            near your college or workplace.
+        </p>
+
+        <form class="search-box">
+
+            <input
+                type="text"
+                placeholder="📍 Search by Location">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="hero-right">
+
+        <img src="{{ url_for('static', filename='images/hero.png') }}"
+             alt="Hero Image">
+
+    </div>
+
+</section>
+<section class="stats">
+
+    <div class="stat-box">
+        <h2>500+</h2>
+        <p>Verified PGs</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>1200+</h2>
+        <p>Happy Students</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>50+</h2>
+        <p>Cities Covered</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>24/7</h2>
+        <p>Support</p>
+    </div>
+
+</section>
+
+
+
+    <!-- ================= FEATURED PGS ================= -->
+
+    <section class="featured">
+
+        <h2>Featured PGs</h2>
+
+        <p>Choose from our most popular accommodations.</p>
+
+        <div class="cards">
+
+            <!-- Card 1 -->
+
+            <div class="card">
+
+                <img src="{{ url_for('static', filename='images/pg1.jpg') }}"
+                     alt="Elite Boys PG">
+
+                <div class="card-content">
+
+                    <h3>Elite Boys PG</h3>
+
+                    <p>📍 Sholinganallur</p>
+
+                    <p>⭐ 4.8 Rating</p>
+
+                    <h4>₹8,500 / Month</h4>
+
+                    <button>View Details</button>
+
+                </div>
+
+            </div>
+
+            <!-- Card 2 -->
+
+            <div class="card">
+
+                <img src="{{ url_for('static', filename='images/pg2.jpg') }}"
+                     alt="Premium Girls PG">
+
+                <div class="card-content">
+
+                    <h3>Premium Girls PG</h3>
+
+                    <p>📍 Navalur</p>
+
+                    <p>⭐ 4.9 Rating</p>
+
+                    <h4>₹9,000 / Month</h4>
+
+                    <button>View Details</button>
+
+                </div>
+
+            </div>
+
+            <!-- Card 3 -->
+
+            <div class="card">
+
+                <img src="{{ url_for('static', filename='images/pg3.jpg') }}"
+                     alt="Luxury Co-Living">
+
+                <div class="card-content">
+
+                    <h3>Luxury Co-Living</h3>
+
+                    <p>📍 Perungudi</p>
+
+                    <p>⭐ 5.0 Rating</p>
+
+                    <h4>₹10,500 / Month</h4>
+
+                    <button>View Details</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
