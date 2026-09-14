@@ -455,9 +455,9 @@ def edit_pg(pg_id):
     cur.close()
 
     return render_template("edit_pg.html", pg=pg)
-@app.route("/pgs")
+@app.route("/explore")
 def explore_pgs():
     return render_template("explore_pgs.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

@@ -1,0 +1,5 @@
+Flask
+Flask-MySQLdb
+Werkzeug
+boto3
+python-dotenv

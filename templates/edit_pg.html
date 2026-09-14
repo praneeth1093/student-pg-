@@ -1,115 +1,153 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edit PG</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit PG | Student PG</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 500px;
+            max-width: 90%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Edit PG Details</h2>
+<div class="container">
 
-<form method="POST">
+    <h1>Edit PG</h1>
 
-    <label>PG Name</label><br>
-    <input type="text" name="pg_name" value="{{ pg[2] }}" required><br><br>
+    <form action="/edit_pg/{{ pg[0] }}" method="POST">
 
-    <label>Location</label><br>
-    <input type="text" name="location" value="{{ pg[3] }}" required><br><br>
+        <label>PG Name</label>
+        <input
+            type="text"
+            name="pg_name"
+            value="{{ pg[2] }}"
+            required
+        >
 
-    <label>Rent</label><br>
-    <input type="number" name="rent" value="{{ pg[4] }}" required><br><br>
+        <label>Location</label>
+        <input
+            type="text"
+            name="location"
+            value="{{ pg[3] }}"
+            required
+        >
 
-    <label>Gender</label><br>
-    <select name="gender">
+        <label>Monthly Rent</label>
+        <input
+            type="number"
+            name="rent"
+            value="{{ pg[4] }}"
+            required
+        >
 
-        <option value="Boys"
-        {% if pg[5]=="Boys" %}selected{% endif %}>
-        Boys
-        </option>
+        <label>Gender</label>
+        <select name="gender" required>
 
-        <option value="Girls"
-        {% if pg[5]=="Girls" %}selected{% endif %}>
-        Girls
-        </option>
+            <option value="Male"
+                {% if pg[5] == "Male" %}selected{% endif %}>
+                Male
+            </option>
 
-        <option value="Both"
-        {% if pg[5]=="Both" %}selected{% endif %}>
-        Both
-        </option>
+            <option value="Female"
+                {% if pg[5] == "Female" %}selected{% endif %}>
+                Female
+            </option>
 
-    </select>
+            <option value="Both"
+                {% if pg[5] == "Both" %}selected{% endif %}>
+                Both
+            </option>
 
-    <br><br>
+        </select>
 
-    <label>Description</label><br>
+        <label>Description</label>
 
-    <textarea name="description" rows="5" cols="40">{{ pg[6] }}</textarea>
+        <textarea
+            name="description"
+            required
+        >{{ pg[6] }}</textarea>
 
-    <br><br>
+        <button type="submit">
+            Update PG
+        </button>
 
-    <button type="submit">Update PG</button>
+    </form>
 
-</form>
+    <a class="back" href="/owner_dashboard">
+        ← Back to Owner Dashboard
+    </a>
 
-<br>
-
-<a href="/owner_dashboard">← Back to Dashboard</a>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-    <title>Edit PG</title>
-</head>
-<body>
-
-<h2>Edit PG Details</h2>
-
-<form method="POST">
-
-    <label>PG Name</label><br>
-    <input type="text" name="pg_name" value="{{ pg[2] }}" required><br><br>
-
-    <label>Location</label><br>
-    <input type="text" name="location" value="{{ pg[3] }}" required><br><br>
-
-    <label>Rent</label><br>
-    <input type="number" name="rent" value="{{ pg[4] }}" required><br><br>
-
-    <label>Gender</label><br>
-    <select name="gender">
-
-        <option value="Boys"
-        {% if pg[5]=="Boys" %}selected{% endif %}>
-        Boys
-        </option>
-
-        <option value="Girls"
-        {% if pg[5]=="Girls" %}selected{% endif %}>
-        Girls
-        </option>
-
-        <option value="Both"
-        {% if pg[5]=="Both" %}selected{% endif %}>
-        Both
-        </option>
-
-    </select>
-
-    <br><br>
-
-    <label>Description</label><br>
-
-    <textarea name="description" rows="5" cols="40">{{ pg[6] }}</textarea>
-
-    <br><br>
-
-    <button type="submit">Update PG</button>
-
-</form>
-
-<br>
-
-<a href="/owner_dashboard">← Back to Dashboard</a>
+</div>
 
 </body>
 </html>
+

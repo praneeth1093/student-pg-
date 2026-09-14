@@ -207,15 +207,10 @@ body{
 }
 
 .hero-right img{
-
     width:100%;
-
-    max-width:650px;
-
+    max-width:780px;
     border-radius:25px;
-
-    box-shadow:0 25px 60px rgba(0,0,0,.18);
-
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
 }
 
 /* ===========================

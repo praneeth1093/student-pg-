@@ -1,0 +1,461 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#F5F7FB;
+    color:#333;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:white;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.logo{
+
+    font-size:32px;
+    font-weight:700;
+    color:#2563EB;
+
+}
+
+.nav-links{
+
+    display:flex;
+    list-style:none;
+    gap:35px;
+
+}
+
+.nav-links a{
+
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    transition:.3s;
+
+}
+
+.nav-links a:hover,
+.nav-links .active{
+
+    color:#2563EB;
+
+}
+
+.btn-register{
+
+    text-decoration:none;
+    background:#2563EB;
+    color:white;
+
+    padding:12px 28px;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+}
+
+.btn-register:hover{
+
+    background:#1D4ED8;
+
+}
+
+/* =========================
+PAGE HEADER
+========================= */
+
+.page-header{
+
+    text-align:center;
+
+    padding:70px 10% 30px;
+
+}
+
+.page-header h1{
+
+    font-size:48px;
+
+    margin-bottom:15px;
+
+}
+
+.page-header p{
+
+    color:#666;
+
+    font-size:20px;
+
+}
+
+/* =========================
+SEARCH
+========================= */
+
+.search-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:35px;
+
+}
+
+.search-box{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.search-box input{
+
+    width:500px;
+
+    padding:18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.search-box button{
+
+    padding:18px 35px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#2563EB;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.search-box button:hover{
+
+    background:#1D4ED8;
+
+}
+
+/* =========================
+FILTERS
+========================= */
+
+.filters{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:50px;
+
+}
+
+.filters button{
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:white;
+
+    cursor:pointer;
+
+    font-weight:500;
+
+    transition:.3s;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.filters button:hover{
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+/* =========================
+PG CARDS
+========================= */
+
+.pg-container{
+
+    width:90%;
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+    padding-bottom:80px;
+
+}
+
+.pg-card{
+
+    display:flex;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.pg-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.pg-card img{
+
+    width:350px;
+
+    height:260px;
+
+    object-fit:cover;
+
+}
+
+.pg-details{
+
+    flex:1;
+
+    padding:25px;
+
+}
+
+.top-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.top-row h2{
+
+    font-size:28px;
+
+}
+
+.rating{
+
+    background:#FFD700;
+
+    padding:8px 15px;
+
+    border-radius:25px;
+
+    font-weight:600;
+
+}
+
+.location{
+
+    margin:18px 0;
+
+    color:#666;
+
+    font-size:17px;
+
+}
+
+.facilities{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.facilities span{
+
+    background:#EEF4FF;
+
+    color:#2563EB;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+}
+
+.bottom-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.bottom-row h3{
+
+    color:#2563EB;
+
+    font-size:30px;
+
+}
+
+.view-btn{
+
+    text-decoration:none;
+
+    background:#2563EB;
+
+    color:white;
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+}
+
+.view-btn:hover{
+
+    background:#1D4ED8;
+
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+
+    background:#111827;
+
+    color:white;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+footer h2{
+
+    margin-bottom:15px;
+
+}
+
+footer p{
+
+    color:#ddd;
+
+    margin:8px;
+
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+.pg-card{
+
+    flex-direction:column;
+
+}
+
+.pg-card img{
+
+    width:100%;
+
+    height:250px;
+
+}
+
+.search-box{
+
+    flex-direction:column;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+}
+
+.bottom-row{
+
+    flex-direction:column;
+
+    gap:20px;
+
+    align-items:flex-start;
+
+}
+
+}
